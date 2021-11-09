@@ -63,6 +63,9 @@ var mImages = [];
 
 // Holds the retrived JSON information
 var mJson;
+const myJSON = '{"name":"John", "age":30, "car":null}';
+const myObj = JSON.parse(myJSON);
+x = myObj["name"];
 
 // URL for the JSON to load by default
 // Some options for you are: images.json, images.short.json; you will need to create your own extra.json later
