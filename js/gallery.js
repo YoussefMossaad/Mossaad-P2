@@ -41,6 +41,12 @@ document.getElementById("photo").src=mImages[mCurrentIndex].imgPath;
 	console.log('swap photo');
 }
 
+.innerHTML {
+  "Location: " + mImages[mCurrentIndex].location;
+  "description: " + mImages[mCurrentIndex].description;
+  "date: " + mImages[mCurrentIndex].date;
+}
+
 // Counter for the mImages array
 var mCurrentIndex = 0;
 
