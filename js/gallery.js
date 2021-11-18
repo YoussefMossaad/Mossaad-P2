@@ -33,18 +33,22 @@ function animate() {
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
 
 function swapPhoto() {
-document.getElementById("photo").src=mImages[mCurrentIndex].imgPath;
-	//Add code here to access the #slideShow element.
-	//Access the img element and replace its source
-	//with a new image from your images array which is loaded
-	//from the JSON string
-	console.log('swap photo');
-}
+ if(mCurrentIndex >= mImages.length)
+  {
+    mCurrentIndex = 0;
+  }
 
-.innerHTML {
-  "Location: " + mImages[mCurrentIndex].location;
-  "description: " + mImages[mCurrentIndex].description;
-  "date: " + mImages[mCurrentIndex].date;
+  if(mCurrentIndex < 0) {
+    mCurrentIndex = mImages.length-1;
+  }
+
+  document.getElementById('photo').src = mImages[mCurrentIndex].img;
+  document.getElementsByClassName('location')[0].innerHTML = "Location: " + mImages[mCurrentIndex].location;
+  document.getElementsByClassName('description')[0].innerHTML = "Description: " + mImages[mCurrentIndex].description;
+  document.getElementsByClassName('date')[0].innerHTML = "Date: " + mImages[mCurrentIndex].date;
+
+  mLastFrameTime = 0;
+  mCurrentIndex += 1;
 }
 
 // Counter for the mImages array
@@ -52,19 +56,19 @@ var mCurrentIndex = 0;
 
 // XMLHttpRequest variable
 var mRequest = new XMLHttpRequest();
-
-request.addEventListener("readystatechange", () => {
-  //console.log(request, request.readyState);
-  if (mRequest.readyState === 4 && mRequest.status === 200) {
-    const data = JSON.parse(mRequest.responseText);
-    console.log(data);
-  } else if (mRequest.readystate === 4) {
-    console.log("could not fetch the data");
+function fetchJSON()
+{
+  mRequest.onreadystatechange = function() {
+    console.log("on ready state change");
+    if(this.readyState == 4 && this.status == 200) {
+      mJson = JSON.parse(mRequest.responseText);
+      iterateJSON(mJson);
+    }
   }
-});
+  mRequest.open("GET", mUrl, true);
+  mRequest.send();
+}
 
-mRequest.open("GET", "../images.json");
-mRequest.send();
 // Array holding GalleryImage objects (see below).
 var mImages = [];
 
@@ -73,7 +77,7 @@ var mImages = [];
 
 // URL for the JSON to load by default
 // Some options for you are: images.json, images.short.json; you will need to create your own extra.json later
-var mUrl = 'insert_url_here_to_image_json';
+var mUrl = 'images.json';
 
 
 //You can optionally use the following function as your event callback for loading the source of Images from your json data (for HTMLImageObject).
@@ -86,9 +90,9 @@ function makeGalleryImageOnloadCallback(galleryImage) {
 }
 
 $(document).ready( function() {
-
+	fetchJSON();
 	// This initially hides the photos' metadata information
-	$('.details').eq(0).hide();
+	// $('.details').eq(0).hide();
 
 });
 
