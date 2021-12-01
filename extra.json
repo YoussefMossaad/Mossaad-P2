@@ -1,0 +1,34 @@
+{
+  "images": [
+    {
+        "imgPath": "img/places/egypt.jpg",
+        "imgLocation": "Egypt",
+        "description": "Cairo",
+        "date": "12/01/2021"
+    },
+    {
+        "imgPath": "img/places/tokyo.jpg",
+        "imgLocation": "Tokyo",
+        "description": "In the city",
+        "date": "12/01/2021"
+    },
+    {
+        "imgPath": "img/places/california.jpg",
+        "imgLocation": "California",
+        "description": "Los Angeles",
+        "date": "12/01/2021"
+    },
+    {
+        "imgPath": "img/places/newyork.jpg",
+        "imgLocation": "newyork",
+        "description": "In the city",
+        "date": "12/01/2021"
+    },
+    {
+        "imgPath": "img/places/africa.jpg",
+        "imgLocation": "Africa",
+        "description": "wil",
+        "date": "12/01/2021"
+    },
+  ]
+}
